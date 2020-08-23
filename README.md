@@ -1,5 +1,7 @@
-# Reverse proxy using Spring Cloud Gateway with enhanced routing
-In this tutorial we are going to a run reverse proxy that is going to server requests on behalf of tomcat.
+# Spring Cloud Gateway -Reverse proxy with Static and Dynamic Routing
+In this tutorial we are going to a run reverse proxy with Static and Dynamic Routing
+- Static Routing
+- Dynamic Routing
 - Run reverse proxy (Spring Cloud Gateway) on 8080 port
 - Run rest api (tomcat) on 9090 port
 - Route requests to only healthy tomcats,  health check tomcat before routing requests.

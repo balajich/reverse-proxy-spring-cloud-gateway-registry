@@ -41,5 +41,6 @@ In this tutorial we are going to a run reverse proxy with Static and Dynamic Rou
 - Access rest api via gateway:  curl http://localhost:8080/
 - Access rest api directly on instance1 : curl http://localhost:9090/
 - Access rest api directly on instance2 : curl http://localhost:9090/
-# Key take aways
-- 
+# Whats next?
+- Netflix components are currently under maintainence mode user should move to spring cloud supported components
+- Currently, there are several applications using Netflix components for Dynamic Routing that the reason this tutorial explaning routing with these components   

@@ -1,10 +1,29 @@
 # Spring Cloud Gateway -Reverse proxy with Static and Dynamic Routing
 In this tutorial we are going to a run reverse proxy with Static and Dynamic Routing
 - Static Routing
+    - Gateway runs on port 8080
+    - All the requests that are coming on 8080 is reverse proxied (forwarded) to rest api running on 9090 and 9091
+    - Requests are routed to only health tomcats running on 9090 and 9091
+    - Health Check is verified before a request is forwarded to tomcat
+    - Netty play a role of Gateway
+    - Netflix Ribbon client is used as Client Side Load Balancer 
+    - Routes are explicitly mentioned in configuration files
+    - New servers cannot be dynamically added with our restart of the servers
+    - Ribbon configuration are defined in application.yml
+    - Legacy application that cannot use Eureka Client can use this type of deployment 
 - Dynamic Routing
-- Run reverse proxy (Spring Cloud Gateway) on 8080 port
-- Run rest api (tomcat) on 9090 port
-- Route requests to only healthy tomcats,  health check tomcat before routing requests.
+    - Gateway runs on port 8080
+    - Requests on 8080 are reverse proxied (forwarded) to  rest api running on 9090 and 9091
+    - Eureka Registry Server is running on port 8761
+    - When Gateways starts up on port 8080 registers with Eureka Registry
+    - When rest api servers starts on 9090 and 9091 register with Eureak Server
+    - Spring Cloud gateway uses Ribbon Configurations and routes all the requests that are coming on 8080 in a round robin fashion to 9090 and 9091
+    - When are new rest api instance starts on 9092 it registers with Eureka and routing is dynamically enabled by Gateway 
+    - New application servers can be dynamically added
+    - Application servers (service urls) are maintained in Registry
+    - Netflix Eureka component plays a role of registry
+    - Netflix Ribbon client plays a role of Client side load balancer
+    - Netflix Eureka Client is included in all the application servers (services)  and Gateway
 # Source Code
     git clone https://github.com/balajich/reverse-proxy-spring-cloud-gateway-enhanced-routing.git
 # Architecture
@@ -13,27 +32,14 @@ In this tutorial we are going to a run reverse proxy with Static and Dynamic Rou
 - Apache Maven 3.6.3 or above
 # Clean and Build
     mvn clean install
-# Run Gateway server
-     java -jar .\gateway\target\gateway-0.0.1-SNAPSHOT.jar
-- The above command runs Netty  server on port 8080
-- All the requests that are received on 8080 is forwarded to tomcat server running on 9090
-# Run api server
-    java -jar .\restapi\target\restapi-0.0.1-SNAPSHOT.jar
+# Running components
+- Registry: java -jar .\registry\target\registry-0.0.1-SNAPSHOT.jar
+- Gateway:  java -jar .\gateway\target\gateway-0.0.1-SNAPSHOT.jar
+- Rest API instance 1: java -jar .\restapi\target\restapi-0.0.1-SNAPSHOT.jar
+- Rest API instance 2:  java -jar '-Dserver.port=9091' .\restapi\target\restapi-0.0.1-SNAPSHOT.jar
 # Using curl to test environment
-Access rest api via gateway
-
-    curl http://localhost:8080/
-
-Access rest api directly.
-
-    curl http://localhost:9090/
-
-# Run api server on 9091 port
-     java '-Dserver.port=9091' -jar .\restapi\target\restapi-0.0.1-SNAPSHOT.jar
-# Assignment
-- Enhance gateway to route requests to tomcat running on 9091
-- Observe requests are served in round robin fashion by the two servers running on 9090 and 9091
-- Enhance gateway application to route requests to only healthy tomcats
-# Solutions
-Please refer next tutorial
-
+- Access rest api via gateway:  curl http://localhost:8080/
+- Access rest api directly on instance1 : curl http://localhost:9090/
+- Access rest api directly on instance2 : curl http://localhost:9090/
+# Key take aways
+- 

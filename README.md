@@ -24,8 +24,10 @@ In this tutorial we are going to a run reverse proxy with Static and Dynamic Rou
     - Netflix Eureka component plays a role of registry
     - Netflix Ribbon client plays a role of Client side load balancer
     - Netflix Eureka Client is included in all the application servers (services)  and Gateway
-# Source Code
+# Source Code - Static Routing
     git clone https://github.com/balajich/reverse-proxy-spring-cloud-gateway-enhanced-routing.git
+# Source Code - Dynamic Routing
+    git clone https://github.com/balajich/reverse-proxy-spring-cloud-gateway-registry.git
 # Architecture
 # Prerequisite
 - JDK 1.8 or above

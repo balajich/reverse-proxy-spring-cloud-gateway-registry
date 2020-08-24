@@ -7,7 +7,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.ribbon.RibbonClient;
 
 @SpringBootApplication
-@EnableDiscoveryClient
+@EnableEurekaClient
 public class GatewayApplication {
 
     public static void main(String[] args) {

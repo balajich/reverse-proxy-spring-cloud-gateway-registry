@@ -28,7 +28,10 @@ In this tutorial we are going to a run reverse proxy with Static and Dynamic Rou
     git clone https://github.com/balajich/reverse-proxy-spring-cloud-gateway-enhanced-routing.git
 # Source Code - Dynamic Routing
     git clone https://github.com/balajich/reverse-proxy-spring-cloud-gateway-registry.git
+# Video
+[![Spring Cloud Gateway -Reverse proxy with Static and Dynamic Routing](https://img.youtube.com/vi/osvwROdqrkQ/0.jpg)](https://www.youtube.com/watch?v=osvwROdqrkQ)
 # Architecture
+![architecture](architecture.png "architecture")
 # Prerequisite
 - JDK 1.8 or above
 - Apache Maven 3.6.3 or above
@@ -44,5 +47,6 @@ In this tutorial we are going to a run reverse proxy with Static and Dynamic Rou
 - Access rest api directly on instance1 : curl http://localhost:9090/
 - Access rest api directly on instance2 : curl http://localhost:9090/
 # Whats next?
-- Netflix components are currently under maintainence mode user should move to spring cloud supported components
-- Currently, there are several applications using Netflix components for Dynamic Routing that the reason this tutorial explaning routing with these components   
+- Netflix component (Ribbon) is currently under maintenance mode user should move to Spring Cloud Loadbalancer
+- Currently, there are several applications using Netflix Ribbon for Dynamic Routing that the reason this tutorial explaining routing using Ribbon
+- Note Netflix eureka is not in maintenance  mode    
